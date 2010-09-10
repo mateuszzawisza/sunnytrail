@@ -1,0 +1,16 @@
+Gem::Specification.new do |s|
+  s.name = 'Sunnytrail'
+  s.version = '0.0.1'
+  s.date = '2010-09-10'
+  s.authors = ["Mateusz Zawisza"]
+  s.email = 'mateusz@applicake.com'
+  s.summary = 'Wrapper for SunnyTrail API'
+  #s.homepage = 'http://developer.vzaar.com'
+  s.description = 'Wrapper for SunnyTrail API'
+  s.files = %w{README.rdoc} + Dir['lib/**/*.rb'] + Dir['spec/**/*.rb'] 
+  s.add_dependency 'hashie'
+  s.add_dependency 'json'
+  s.has_rdoc = 'true'
+  s.extra_rdoc_files = ['README.rdoc']
+end
+

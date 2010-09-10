@@ -1,6 +1,6 @@
-#SunnyTrail Mock. We override request method not to sent requests to SunnyTrail
+#Sunnytrail Mock. We override request method not to sent requests to SunnyTrail
 
-class SunnyTrail
+class Sunnytrail
   private
 
   def request(message)

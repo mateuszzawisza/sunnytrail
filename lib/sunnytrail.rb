@@ -3,7 +3,7 @@ require 'net/https'
 require 'json'
 require 'hashie'
 
-class SunnyTrail
+class Sunnytrail
 
 
   class ConfigurationError < StandardError; end
@@ -28,7 +28,7 @@ class SunnyTrail
     end
 
     def add_event(args={})
-      sunny_trail = SunnyTrail.new
+      sunny_trail = Sunnytrail.new
       sunny_trail.add_event(args)
     end
   end
@@ -37,7 +37,7 @@ class SunnyTrail
 
   # instance methods
   def initialize(init_options={})
-    @options = SunnyTrail.options.merge(init_options)
+    @options = Sunnytrail.options.merge(init_options)
     raise ConfigurationError, "API KEY not set" if @options[:api_key].nil?
   end
 
