@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = 'Sunnytrail'
+  s.name = 'sunnytrail'
   s.version = '0.0.1'
   s.date = '2010-09-10'
   s.authors = ["Mateusz Zawisza"]
