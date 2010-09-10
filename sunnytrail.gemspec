@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.authors = ["Mateusz Zawisza"]
   s.email = 'mateusz@applicake.com'
   s.summary = 'Wrapper for SunnyTrail API'
-  #s.homepage = 'http://developer.vzaar.com'
+  s.homepage = 'http://github.com/mateuszzawisza/sunnytrail'
   s.description = 'Wrapper for SunnyTrail API'
   s.files = %w{README.rdoc} + Dir['lib/**/*.rb'] + Dir['spec/**/*.rb'] 
   s.add_dependency 'hashie'
