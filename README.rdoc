@@ -5,6 +5,16 @@ This is wrapper for Sunnytrail API - http://www.thesunnytrail.com
 You can find API documentation here:
 https://beta.thesunnytrail.com/developers
 
+== Installation
+
+Sunnytrail gem is hosted on http://rubygems.org
+
+To install type in you terminal:
+
+  gem install sunnytrail
+
+
+
 == Usage
 
 First you need to setup you token.
