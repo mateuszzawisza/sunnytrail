@@ -63,6 +63,26 @@ describe Sunnytrail do
       event.to_hash.should == OPTIONS_HASH
       event.to_json.should == OPTIONS_HASH.to_json
     end
+
+    it "should set up and clear action and plan attributes properly" do 
+      event = Sunnytrail::Event.new
+      event.action.name = "signup"
+      event.plan.name = "Basic"
+      event.action.name.should == "signup"
+      event.plan.name.should == "Basic"
+      event.action = nil
+      event.plan = nil
+      event.action.name.should be_nil 
+      event.plan.name.should be_nil
+    end
+
+    it "should add empty plan and action node to hash when they are not specified" do
+      event = Sunnytrail::Event.new
+      hash = event.to_hash
+      hash[:action].should == {}
+      hash[:plan].should == {}
+    end
   end
+
 
 end
