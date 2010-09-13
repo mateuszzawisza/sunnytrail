@@ -13,11 +13,11 @@ First you need to setup you token.
 
 You can do it globally:
 
-Sunnytrail.configure :api_key => "YOURTOKENHERE"
+  Sunnytrail.configure :api_key => "YOURTOKENHERE"
 
 or per object:
 
-sunnytrail = Sunnytrail.new :api_key => "YOURTOKENHERE"
+  sunnytrail = Sunnytrail.new :api_key => "YOURTOKENHERE"
 
 
 To add event to Sunnytrail use add_event function.
