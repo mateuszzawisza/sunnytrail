@@ -1,10 +1,8 @@
 = Sunnytrail
 
-Sunnytrail API Wrapper
-
 This is wrapper for Sunnytrail API - http://www.thesunnytrail.com
 
-You can fine API documentation here:
+You can find API documentation here:
 https://beta.thesunnytrail.com/developers
 
 == Usage
@@ -15,7 +13,7 @@ You can do it globally:
 
   Sunnytrail.configure :api_key => "YOURTOKENHERE"
 
-or per object:
+or per instance:
 
   sunnytrail = Sunnytrail.new :api_key => "YOURTOKENHERE"
 
