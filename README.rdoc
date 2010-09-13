@@ -2,7 +2,7 @@
 
 Sunnytrail API Wrapper
 
-This is wrapper for Sunnytrail API - http://www.thesunnytrail.com/
+This is wrapper for Sunnytrail API - http://www.thesunnytrail.com
 
 You can fine API documentation here:
 https://beta.thesunnytrail.com/developers
@@ -24,12 +24,12 @@ To add event to Sunnytrail use add_event function.
 
 You can pass all arguments in hash.
 
-Sunnytrail.add_event({:action => {:name =>"signup", :created =>Time.now.to_i}, 
-                      :plan => {:name => "Basic", :price => 29, :recurring => 31}, 
-                      :name => "User1", 
-                      :email => "user1@example.com", 
-                      :id => "123"
-                     })
+  Sunnytrail.add_event({:action => {:name =>"signup", :created =>Time.now.to_i}, 
+                        :plan => {:name => "Basic", :price => 29, :recurring => 31}, 
+                        :name => "User1", 
+                        :email => "user1@example.com", 
+                        :id => "123"
+                       })
 
 
 
@@ -37,21 +37,21 @@ Sunnytrail.add_event({:action => {:name =>"signup", :created =>Time.now.to_i},
 Or you can build event with Event class.
 
 
-event = Sunnytrail::Event.new
-event.id = 123
-event.email = "user1@example.com"
-event.name = "User1"
-event.plan.name = "Basic"
-event.plan.price = 29
-event.plan.recurring = 31
-event.action.name = "signup"
-event.created = Time.now.to_i
+  event = Sunnytrail::Event.new
+  event.id = 123
+  event.email = "user1@example.com"
+  event.name = "User1"
+  event.plan.name = "Basic"
+  event.plan.price = 29
+  event.plan.recurring = 31
+  event.action.name = "signup"
+  event.created = Time.now.to_i
 
-Sunnytrail.add_event(event)
+  Sunnytrail.add_event(event)
 
 
 
 add_event works also as an instance method.
 
-sunnytrail = Sunnytrail.new
-sunnytrail.add_event(event)
+  sunnytrail = Sunnytrail.new
+  sunnytrail.add_event(event)
