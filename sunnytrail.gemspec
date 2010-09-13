@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'sunnytrail'
-  s.version = '0.0.1.1'
+  s.version = '0.0.1.2'
   s.date = '2010-09-13'
   s.authors = ["Mateusz Zawisza"]
   s.email = 'mateusz@applicake.com'
