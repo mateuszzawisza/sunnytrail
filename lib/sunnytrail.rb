@@ -105,7 +105,7 @@ class Sunnytrail
 
     class Action < Hashie::Dash
       property :name
-      property :created, :default => Time.now.to_i
+      property :created, :default => lambda {Time.now.to_i}.call
     end
 
     class Plan < Hashie::Dash
