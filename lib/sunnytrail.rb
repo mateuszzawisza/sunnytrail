@@ -93,8 +93,8 @@ class Sunnytrail
 
     def to_hash
       out = {}
-      out[:action] = @action.nil? ? {} : @action.to_hash
-      out[:plan] = @plan.nil? ? {} : @plan.to_hash
+      out["action"] = @action.nil? ? {} : @action.to_hash
+      out["plan"] = @plan.nil? ? {} : @plan.to_hash
       keys.each do |k|
         out[k] = Hashie::Hash === self[k] ? self[k].to_hash : self[k]
       end
