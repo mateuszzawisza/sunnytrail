@@ -39,6 +39,17 @@ describe Sunnytrail do
   it "should override conf when specified in constructor" do
     sunnytrail = Sunnytrail.new :api_key => "thisisthenewtoken"
     sunnytrail.options[:api_key].should == "thisisthenewtoken"
+    Sunnytrail.options[:api_key].should == "abcdefghijklmnoprstvuxywz"
+  end
+
+  it "should override conf when specified in block" do
+    Sunnytrail.configure do |config|
+      config[:api_key] = "evennewertoken"
+      config[:use_ssl] = false
+    end
+    Sunnytrail.options[:api_key].should == "evennewertoken"
+    Sunnytrail.options[:use_ssl].should be_false
+    Sunnytrail.options[:use_ssl] = true
   end
 
   it "should send event" do
@@ -61,7 +72,7 @@ describe Sunnytrail do
       event.plan.price = 123.0
       event.plan.recurring = 31
       event.to_hash.should == OPTIONS_HASH
-  #    event.to_json.should == OPTIONS_HASH.to_json
+      JSON.parse(event.to_json).should == OPTIONS_HASH
     end
 
     it "should set up and clear action and plan attributes properly" do 

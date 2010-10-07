@@ -14,12 +14,16 @@ class Sunnytrail
   # class methods
 
   class << self
-    def configure(options = {})
+    def configure(options = {}, &block)
       default_options = {
         :api_url => "api.thesunnytrail.com",
         :api_key => nil,
-        :use_ssl => true
+        :use_ssl => true,
+        :verbose => false,
+        :send_events => true
       }
+
+      block.call(options) if block_given?
       @options = default_options.merge(options)
     end
 
