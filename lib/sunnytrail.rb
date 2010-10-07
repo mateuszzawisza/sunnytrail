@@ -51,7 +51,7 @@ class Sunnytrail
 
   def add_event(args={})
     message = args.to_json
-    @logger.info message if verbose?
+    @logger.info("Event sent: #{message}") if verbose?
     request(message) if @options[:send_events]
   end
 
@@ -91,6 +91,7 @@ class Sunnytrail
 
   def start_logger
     @logger = Logger.new(@options[:log_path]) if verbose?
+    @logger.formatter = proc{|s,t,p,m|"%5s [%s] (%s) %s :: %s\n" % [s, t.strftime("%Y-%m-%d %H:%M:%S"), $$, p, m]}
     @logger.info "Options set:"
     @options.each_pair do |option, value|
       @logger.info "#{option} => #{value}"
