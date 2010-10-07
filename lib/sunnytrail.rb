@@ -17,12 +17,12 @@ class Sunnytrail
   class << self
     def configure(options = {}, &block)
       default_options = {
-        :api_url => "api.thesunnytrail.com",
-        :api_key => nil,
-        :use_ssl => true,
-        :verbose => false,
+        :api_url     => "api.thesunnytrail.com",
+        :api_key     => nil,
+        :use_ssl     => true,
+        :verbose     => false,
         :send_events => true,
-        :log_path => 'sunnytrail.log'
+        :log_path    => 'sunnytrail.log'
       }
 
       block.call(options) if block_given?
@@ -41,6 +41,7 @@ class Sunnytrail
 
   # EOF class methods
 
+
   # instance methods
   def initialize(init_options={})
     @options = Sunnytrail.options.merge(init_options)
@@ -48,23 +49,14 @@ class Sunnytrail
     raise ConfigurationError, "API KEY not set" if @options[:api_key].nil?
   end
 
-  def start_logger
-    @logger = Logger.new(@options[:log_path]) if verbose?
-    @logger.info "Options set:"
-    @options.each_pair do |option, value|
-      @logger.info "#{option} => #{value}"
-    end
-    @logger.info "EOF Options\n\n"
-  end
-
-  def verbose?
-    !!@options[:verbose]
-  end
-
   def add_event(args={})
     message = args.to_json
     @logger.info message if verbose?
     request(message) if @options[:send_events]
+  end
+
+  def verbose?
+    !!@options[:verbose]
   end
 
   # EOF instance methods
@@ -96,6 +88,16 @@ class Sunnytrail
       raise "#{response.code}: #{response.message}"
     end
   end
+
+  def start_logger
+    @logger = Logger.new(@options[:log_path]) if verbose?
+    @logger.info "Options set:"
+    @options.each_pair do |option, value|
+      @logger.info "#{option} => #{value}"
+    end
+    @logger.info "EOF Options\n\n"
+  end
+
 
   class Event < Hashie::Dash
 
