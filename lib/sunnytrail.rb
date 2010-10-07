@@ -2,6 +2,7 @@ require 'net/http'
 require 'net/https'
 require 'json'
 require 'hashie'
+require 'logger'
 
 class Sunnytrail
 
@@ -20,7 +21,8 @@ class Sunnytrail
         :api_key => nil,
         :use_ssl => true,
         :verbose => false,
-        :send_events => true
+        :send_events => true,
+        :log_path => 'sunnytrail.log'
       }
 
       block.call(options) if block_given?
@@ -32,8 +34,8 @@ class Sunnytrail
     end
 
     def add_event(args={})
-      sunny_trail = Sunnytrail.new
-      sunny_trail.add_event(args)
+      @sunny_trail ||= Sunnytrail.new
+      @sunny_trail.add_event(args)
     end
   end
 
@@ -42,11 +44,27 @@ class Sunnytrail
   # instance methods
   def initialize(init_options={})
     @options = Sunnytrail.options.merge(init_options)
+    start_logger if verbose?
     raise ConfigurationError, "API KEY not set" if @options[:api_key].nil?
   end
 
+  def start_logger
+    @logger = Logger.new(@options[:log_path]) if verbose?
+    @logger.info "Options set:"
+    @options.each_pair do |option, value|
+      @logger.info "#{option} => #{value}"
+    end
+    @logger.info "EOF Options\n\n"
+  end
+
+  def verbose?
+    !!@options[:verbose]
+  end
+
   def add_event(args={})
-    request args
+    message = args.to_json
+    @logger.info message if verbose?
+    request(message) if @options[:send_events]
   end
 
   # EOF instance methods
@@ -65,7 +83,7 @@ class Sunnytrail
     api = setup_call
     
     response = api.post("/messages?apikey=#{@options[:api_key]}",
-                        "message=#{message.to_json}")
+                        "message=#{message}")
 
     case response.code.to_i
     when 200..202

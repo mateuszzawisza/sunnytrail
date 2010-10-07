@@ -53,10 +53,29 @@ describe Sunnytrail do
   end
 
   it "should send event" do
-    sunnytrail = Sunnytrail.new
+    sunnytrail = Sunnytrail.new 
     sunnytrail.add_event(OPTIONS_HASH).should be_true
   end
 
+  it "should not send event if send_events set to false" do
+    sunnytrail = Sunnytrail.new :send_events => false
+    sunnytrail.add_event(OPTIONS_HASH).should be_nil
+  end
+
+  it "should create log file when in verbose mode" do 
+    sunnytrail = Sunnytrail.new(:verbose => true)
+    sunnytrail.add_event(OPTIONS_HASH).should be_true
+    File.exist?("sunnytrail.log").should be_true
+
+    sunnytrail = Sunnytrail.new(:verbose => true,
+                                :log_path => "sunnylogger.log")
+    sunnytrail.add_event(OPTIONS_HASH).should be_true
+    File.exist?("sunnylogger.log").should be_true
+
+    File.delete("sunnytrail.log")
+    File.delete("sunnylogger.log")
+
+  end
 
   describe Sunnytrail::Event do
 
