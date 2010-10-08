@@ -4,21 +4,20 @@ require 'mock'
 describe Sunnytrail do
 
   before :all do
-      TIME_NOW = Time.now.to_i
-      OPTIONS_HASH = {"id" => 123,
-              "email" => "user123@example.com",
-              "name" => "User123",
-              "action" => {
-                          "name" => "Signup",
-                          "created" => TIME_NOW
-                         },
-              "plan" => {
-                        "name" => "Gold",
-                        "price" => 123.0,
-                        "recurring" => 31
-                       }
-             }
-
+    TIME_NOW = Time.now.to_i
+    OPTIONS_HASH = {"id" => 123,
+            "email" => "user123@example.com",
+            "name" => "User123",
+            "action" => {
+                        "name" => "Signup",
+                        "created" => TIME_NOW
+                       },
+            "plan" => {
+                      "name" => "Gold",
+                      "price" => 123.0,
+                      "recurring" => 31
+                     }
+           }
   end
 
   it "should raise exception if not configured" do
