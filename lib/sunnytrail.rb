@@ -3,6 +3,7 @@ require 'net/https'
 require 'json'
 require 'hashie'
 require 'logger'
+require 'cgi'
 
 class Sunnytrail
 
@@ -74,6 +75,9 @@ class Sunnytrail
 
     api = setup_call
     
+    #CGI encode the message
+    message = CGI.escape(message)
+
     response = api.post("/messages?apikey=#{@options[:api_key]}",
                         "message=#{message}")
 
